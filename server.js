@@ -1,4 +1,4 @@
-// include third party modules that would be used in the app
+// 
 const inquirer = require('inquirer');
 const [runQuery, getQuery] = require('./helper/sqlUtils');
 
@@ -9,7 +9,7 @@ function init() {
 }
 
 function mainSelect() {
-  // prompt for all available actions
+  // 
   inquirer
     .prompt([
       {
@@ -36,24 +36,24 @@ function mainSelect() {
       },
     ])
     .then((val) => {
-      // split actions into arrays
+      // 
       const action = val.action.split(' ');
       console.log({ action });
       switch (action[0]) {
         case 'View':
-          // passes the third word from the options in the main selection
+          // 
           viewAction(action[2]);
           break;
         case 'Add':
-          // passes the second word from the options in the main selection
+          // 
           addAction(action[1]);
           break;
         case 'Update':
-          // passes the third word from the options in the main selection
+          // 
           updateAction(action[2]);
           break;
         case 'Delete':
-          // passes the second word from the options in the main selection
+          // 
           deleteAction(action[1]);
           break;
         default:
@@ -63,9 +63,9 @@ function mainSelect() {
     .catch((error) => {
       console.log('err', error);
       if (error.isTtyError) {
-        // Prompt couldn't be rendered in the current environment
+        // 
       } else {
-        // Something else went wrong
+        // Something error
       }
     });
 }
@@ -77,25 +77,25 @@ function quit() {
 
 function viewAction(table) {
   let query;
-  // pass the query to be shown based on the parameter passed
+  // 
   switch (table) {
     case 'Departments':
       query = 'SELECT * from department';
-      // run the query, show the results and then go back to the main selection
+      // 
       runQuery(query).then(() => mainSelect());
       break;
 
     case 'Roles':
       query =
         'SELECT role.id, role.title, department.name, role.salary from role join department on department.id = role.department_id order by role.id';
-      // run the query, show the results and then go back to the main selection
+      // 
       runQuery(query).then(() => mainSelect());
       break;
 
     case 'Employees':
       query =
         "SELECT a.id, a.first_name, a.last_name, role.title, role.name as department, role.salary, concat(b.first_name,' ',b.last_name) as manager from employee a left join employee b on a.manager_id = b.id join (select role.id, role.title, role.salary, department.name from role join department on department.id = role.department_id) role on role.id = a.role_id";
-      // run the query, show the results and then go back to the main selection
+      // 
       runQuery(query).then(() => mainSelect());
       break;
 
@@ -115,7 +115,7 @@ function viewAction(table) {
             query =
               'SELECT name AS department, role.salary AS salary FROM department LEFT JOIN (SELECT department_id, sum(salary) AS salary FROM role LEFT JOIN employee ON role_id = role.id GROUP BY department_id) role ON department.id = role.department_id WHERE name = ?';
             param = [val.department];
-            // run the query, show the results and then go back to the main selection
+            // 
             runQuery(query, param).then(() => mainSelect());
           });
       });
@@ -137,7 +137,7 @@ function viewAction(table) {
             query =
               'SELECT a.id, a.first_name, a.last_name, role.title, role.name as department from employee a left join employee b on a.manager_id = b.id join (select role.id, role.title, department.name from role join department on department.id = role.department_id WHERE department.name = ?) role on role.id = a.role_id';
             param = [val.department];
-            // run the query, show the results and then go back to the main selection
+            // 
             runQuery(query, param).then(() => mainSelect());
           });
       });
