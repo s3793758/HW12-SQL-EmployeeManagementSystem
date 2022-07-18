@@ -1,6 +1,6 @@
 # E-Commerce Back End
 
-![Sequelize](https://img.shields.io/badge/6.3.5-0?label=Sequelize&style=for-the-badge&labelColor=white&color=black) ![mysql2](https://img.shields.io/badge/2.2.1-0?label=mysql2&style=for-the-badge&labelColor=white&color=black) 
+![Sequelize](https://img.shields.io/badge/6.3.5-0?label=Sequelize&style=for-the-badge&labelColor=white&color=black) ![mysql2](https://img.shields.io/badge/2.2.1-0?label=mysql2&style=for-the-badge&labelColor=white&color=black)
 
 ## Introduction
 
@@ -10,15 +10,14 @@ This CLI application uses npm package `Sequelize` and `mysql2`.
 
 I made this app in order to learn how to implement a database model using Sequelize.
 
-
 ## Installation
 
 ### 0. Required
 
-| Programs   | Download links                             |
-| ---------- | ------------------------------------------ |
-| `Node`     | https://nodejs.org/en/download/            |
-| `Mysql`    | https://dev.mysql.com/        |
+| Programs | Download links                  |
+| -------- | ------------------------------- |
+| `Node`   | https://nodejs.org/en/download/ |
+| `Mysql`  | https://dev.mysql.com/          |
 
 ### 1. Git clone and go inside
 
@@ -32,11 +31,11 @@ cd sql
 
 1. Start the server: `npm start`
 
-
 ## Video Demo
 
-https://drive.google.com/file/d/1V6K1aqzZbLY-7StBjJ5QOXHNOkS_lbnZ/view 
+https://drive.google.com/file/d/1V6K1aqzZbLY-7StBjJ5QOXHNOkS_lbnZ/view
 
+![img](sql.png)
 
 ## Credits
 
